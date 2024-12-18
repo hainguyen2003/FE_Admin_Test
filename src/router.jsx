@@ -43,6 +43,12 @@ import DetailExamresults from "./Page/Exam/DetailExamresults";
 import StatisticExam from "./Page/Statistics/StatisticExam";
 import ChangePassword from "./Components/Modal/ChangePassword";
 import CollapseExam from "./Page/MockTest/CollapseExam";
+import TableAdmissions from "./Components/Table/Admission/Admission";
+import DetailAdmission from "./Components/Details/DetailAdmission/DetailAdmission";
+import ConsultingRegister1 from "./Components/Table/CourseInformation/CourseInformation";
+import DetailConsultingRegister1 from "./Components/Details/CourseInformation/CourseInformation";
+
+
 
 // import Editor from "./Components/CKEditor/CKEditor";
 
@@ -134,6 +140,16 @@ export const router = createBrowserRouter([
           {
             path: "detailnews/:detailnewsId",
             element: <DetailNews />,
+          },
+        ],
+      },
+      {
+        path: "admissions",
+        element: <TableAdmissions />,
+        children: [
+          {
+            path: "detailadmission/:admissionId",
+            element: <DetailAdmission />,
           },
         ],
       },
@@ -265,7 +281,8 @@ export const router = createBrowserRouter([
       {
         path: "contest",
         element: <Contest />,
-      }, {
+      },
+      {
         path: "create-question",
         element: <CreateQuestion />,
       },
@@ -273,14 +290,14 @@ export const router = createBrowserRouter([
         path: `add-section/:id`,
         element: <AddSectionToExam />,
       },
-     
+
       {
         path: "infor-exam",
         element: <InforExams />,
       },
       {
-        path : "detail-exam/:examId" ,
-        element : <CollapseExam/>
+        path: "detail-exam/:examId",
+        element: <CollapseExam />,
       },
       {
         path: "statistics/:responseId",
@@ -309,6 +326,16 @@ export const router = createBrowserRouter([
           {
             path: "detailConsultingRegister/:detailConsultingRegisterId",
             element: <DetailConsultingRegister />,
+          },
+        ],
+      },
+      {
+        path: "consultingRegister1",
+        element: <ConsultingRegister1 />,
+        children: [
+          {
+            path: "detailConsultingRegister1/:detailConsultingRegister1Id",
+            element: <DetailConsultingRegister1 />,
           },
         ],
       },

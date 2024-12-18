@@ -9,15 +9,19 @@ import ChangePassword from "../../Components/Modal/ChangePassword";
 
 function HeaderEtest(props) {
   const navigate = useNavigate();
-  const [openDrawer, setOpenDrawer] = useState();
-  const [openModal, setOpenModal] = useState();
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true); // Trạng thái tải dữ liệu
 
   const handleGetProfileUser = () => {
+    setLoading(true);
     getProfileUser().then((res) => {
       setData(res?.data?.data);
+      setLoading(false);
     });
   };
+
   useEffect(() => {
     handleGetProfileUser();
   }, []);
@@ -48,11 +52,15 @@ function HeaderEtest(props) {
       label: "Đăng xuất",
       key: "3",
       onClick: () => {
-        navigate("/");
         Cookies.remove("jwt");
+        navigate("/");
       },
     },
   ];
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="flex justify-between ">
@@ -70,7 +78,6 @@ function HeaderEtest(props) {
           </Space>
         </Dropdown>
         <Modal
-          // openModal={openModal}
           open={openModal}
           footer={null}
           onCancel={() => {

@@ -230,6 +230,50 @@ export const filterNews= (values) =>{
     }
     return axios.post('/news/filter', newsValue)
 }
+// *********** Admission *******
+
+// API create Admission
+export const createAdmission = (values) => {
+  return axios.post('/admissions', values);
+};
+
+// Get all Admissions
+export const getListAdmissions = () => {
+  return axios.get('/admissions/all');
+};
+
+// Get detail Admission
+export const getInforAdmission = (id) => {
+  return axios.get(`/admissions/${id}`);
+};
+
+// Update Admission
+export const updateAdmission = (id, values) => {
+  return axios.put(`/admissions/${id}`, values);
+};
+
+// Delete each Admission
+export const deleteAdmission = (id) => {
+  return axios.delete(`/admissions/${id}`);
+};
+
+// Delete All Admissions
+export const delAllAdmissions = (ids) => {
+  return axios.delete('/admissions/delete/all', { data: ids });
+};
+
+// Filter Admissions
+export const filterAdmissions = (values) => {
+  const admissionValue = {
+    start: 0,
+    limit: 10000,
+    title: values?.title,
+    dateFrom: values?.dateFrom,
+    dateTo: values?.dateTo,
+  };
+  return axios.post('/admissions/filter', admissionValue);
+};
+
 // *********** Document *******
 
 // API create Document
@@ -419,7 +463,92 @@ export const filterConsultingRegister = (values) =>{
         status: values?.status,
     }
     return axios.post('/consulting/registration/filter', docValue)
+    }
+
+    // *************** Course Information ******
+
+//  get all CourseInformation
+export const getListCourseInformation = ()=>{
+    return axios.get("course/information/all");
+} 
+
+//  get detail CourseInformation
+export const getInforCourseInformation = (id) => {
+  return axios.get(`course/information/${id}`);
+};
+
+// Update infor CourseInformation
+export const updateCourseInformation = (id, values) => {
+  return axios.put(`course/information/${id}`, values);
+};
+
+// Delete each CourseInformation
+export const deleteCourseInformation = (id) => {
+  return axios.delete(`course/information/${id}`);
+};
+
+//  Delete All CourseInformation
+export const delAllCourseInformation = (ids) => {
+  return axios.delete("course/information/delete/all", { data: ids });
+};
+
+// Filter infor CourseInformation
+export const filterCourseInformation = (values) => {
+  const docValue = {
+    start: 0,
+    limit: 10000,
+    name: values?.name,
+    dateFrom: values?.dateFrom,
+    dateTo: values?.dateTo,
+    email: values?.email,
+    address: values?.address,
+    phone: values?.phone,
+    status: values?.status,
+  };
+  return axios.post("course/information/filter", docValue);
+};
+
+// *************** Consulting Register1 ******
+
+//  get all Consulting Register
+export const getListConsultingRegister1 = ()=>{
+    return axios.get("/course/registration/all");
+} 
+
+//  get detail Consulting Register
+export const getInforConsultingRegister1= (id)=>{
+    return axios.get(`/course/registration/${id}`);
 }
+
+// Update infor Consulting Register
+export const updateConsultingRegister1 = (id, values) =>{
+    return axios.put(`/course/registration/${id}`, values);
+}
+
+// Delete each Consulting Register
+export const deleteConsultingRegister1 = (id) =>{
+    return axios.delete(`/course/registration/${id}`);
+}
+
+//  Delete All Consulting Register
+export const delAllConsultingRegister1 = (ids) =>{
+    return axios.delete("/course/registration/delete/all", { data: ids });
+}
+
+// Filter infor Consulting Register
+export const filterConsultingRegister1 = (values) =>{
+    const docValue = {
+        "start":0,
+        "limit":10000,
+        name: values?.name,
+        dateFrom: values?.dateFrom,
+        dateTo: values?.dateTo,
+        email: values?.email,
+        phone: values?.phone,
+        status: values?.status,
+    }
+    return axios.post("/course/registration/filter", docValue);
+    }
 
 // ******************** profile user **************
 export const getProfileUser = ()=>{

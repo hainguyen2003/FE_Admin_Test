@@ -128,6 +128,7 @@ function AddEditDocument({ onSuccess, openModal, data, onOpenChange }) {
             valueEnum={{
               0: "FREE",
               1: "NO_FREE",
+             
             }}
             label="Trạng thái"
             placeholder="Trạng thái"

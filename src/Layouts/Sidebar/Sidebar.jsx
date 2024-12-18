@@ -5,7 +5,9 @@ import {
   ScheduleOutlined,
   CalendarOutlined,
   FileTextOutlined,
+  BookOutlined, // Thêm dòng này
 } from "@ant-design/icons";
+
 import { useLocation, useNavigate } from "react-router-dom";
 import { Menu } from "antd";
 import { getProfileUser } from "../../Services/lead";
@@ -44,26 +46,34 @@ function Sidebar(props) {
     if (pathname.includes("/adminpage/consultingRegister")) {
       return "5";
     }
-    if (pathname.includes("/adminpage/examschedule")) {
+    if (pathname.includes("/adminpage/consultingRegister1")) {
       return "6";
     }
-    if (pathname.includes("/adminpage/reviewschedule")) {
+    
+    if (pathname.includes("/adminpage/examschedule")) {
       return "7";
     }
-    if (pathname.includes("/adminpage/news")) {
+    if (pathname.includes("/adminpage/reviewschedule")) {
       return "8";
     }
-    if (pathname.includes("/adminpage/document")) {
+    if (pathname.includes("/adminpage/news")) {
       return "9";
     }
+    if (pathname.includes("/adminpage/admissions")) {
+      return "10"; // Key của mục "Chương trình"
+    }
+    
+    if (pathname.includes("/adminpage/document")) {
+      return "11";
+    }
     if (pathname.includes("/adminpage/displayhome")) {
-      return "13";
+      return "15";
     }
     if (pathname.includes("/adminpage/displaypages")) {
-      return "14";
+      return "16";
     }
     if (pathname.includes("/adminpage/displayprogram")) {
-      return "15";
+      return "17";
     }
   };
   const items = [
@@ -116,8 +126,17 @@ function Sidebar(props) {
       },
     },
     {
-      label: "Lịch thi",
+      label: "Đăng ký khóa học",
       key: "6",
+      icon: <ReadOutlined />,
+      onClick: () => {
+        navigate("/adminpage/consultingRegister1");
+      },
+    },
+
+    {
+      label: "Lịch thi",
+      key: "7",
       icon: <ScheduleOutlined />,
       onClick: () => {
         navigate("/adminpage/examschedule");
@@ -125,7 +144,7 @@ function Sidebar(props) {
     },
     {
       label: "Lịch ôn tập",
-      key: "7",
+      key: "8",
       icon: <CalendarOutlined />,
       onClick: () => {
         navigate("/adminpage/reviewschedule");
@@ -133,15 +152,25 @@ function Sidebar(props) {
     },
     {
       label: "Tin tức",
-      key: "8",
+      key: "9",
       icon: <FileTextOutlined />,
       onClick: () => {
         navigate("/adminpage/news");
       },
     },
+
+    {
+      label: "Chương trình tuyển sinh ",
+      key: "10", // Đảm bảo key là duy nhất
+      icon: <FileTextOutlined />,
+      onClick: () => {
+        navigate("/adminpage/admissions"); // Đường dẫn tới trang quản lý "Admission"
+      },
+    },
+
     {
       label: "Tài liệu",
-      key: "9",
+      key: "11",
       icon: <ReadOutlined />,
       onClick: () => {
         navigate("/adminpage/document");
@@ -178,14 +207,14 @@ function Sidebar(props) {
     //     },
     //   ],
     // },
-{
+    {
       label: "Thi thử ",
       key: "mocktest",
       icon: <TeamOutlined />,
       children: [
         {
           label: "Quản lý đề thi",
-          key: "10",
+          key: "12",
           icon: <FileTextOutlined />,
           onClick: () => {
             navigate("/adminpage/infor-exam");
@@ -194,7 +223,7 @@ function Sidebar(props) {
         {
           label: "Quản lý bài thi",
           icon: <FileTextOutlined />,
-          key: "11",
+          key: "13",
           onClick: () => {
             navigate("/adminpage/user-test");
           },
@@ -202,7 +231,7 @@ function Sidebar(props) {
         {
           label: "Thống kê",
           icon: <FileTextOutlined />,
-          key: "12",
+          key: "14",
           onClick: () => {
             navigate("/adminpage/statistics");
           },
@@ -216,21 +245,21 @@ function Sidebar(props) {
       children: [
         {
           label: "Trang chủ",
-          key: "13",
+          key: "15",
           onClick: () => {
             navigate("/adminpage/displayhome");
           },
         },
         {
           label: "Pages",
-          key: "14",
+          key: "16",
           onClick: () => {
             navigate("/adminpage/displaypages");
           },
         },
         {
           label: "Chương trình",
-          key: "15",
+          key: "17",
           onClick: () => {
             navigate("/adminpage/displayprogram");
           },

@@ -10,18 +10,18 @@ import { PageContainer } from "@ant-design/pro-components";
 import { Button, Drawer, Input, Modal, Popover, Space, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import {
-  delAllConsultingRegister,
-  deleteConsultingRegister,
-  filterConsultingRegister,
-  getListConsultingRegister,
+  delAllConsultingRegister1,
+  deleteConsultingRegister1,
+  filterConsultingRegister1,
+  getListConsultingRegister1,
 } from "../../../Services/lead";
-import EditConsultingRegister from "../../AddEdit/EditConsultingRegister/EditConsultingRegister";
-import DetailConsultingRegister from "../../Details/ConsultingRegister/ConsultingRegister";
-import { useNavigate } from "react-router-dom";
-import FilterConsultingRegister from "../../FormFilter/FilterConsultingRegister";
-import { utils, writeFileXLSX } from "xlsx";
 
-function ConsultingRegister(props) {
+import { useNavigate } from "react-router-dom";
+import { utils, writeFileXLSX } from "xlsx";
+import EditConsultingRegister1 from "../../AddEdit/EditCourseInformation/EditCourseInformation";
+import DetailConsultingRegister1 from "../../Details/CourseInformation/CourseInformation";
+
+function ConsultingRegister1(props) {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [currentCR, setCurrentCR] = useState({});
   const [openDrawer, setOpenDrawer] = useState();
@@ -45,9 +45,9 @@ function ConsultingRegister(props) {
 
   const showhowConfirm = () => {
     confirm({
-      title: "Xoá khách hàng ",
+      title: "Xoá thí sinh ",
       content:
-        "Việc này sẽ xóa khách hàng được chọn. Bạn có chắc chắn muốn xóa?",
+        "Việc này sẽ xóa thí sinh được chọn. Bạn có chắc chắn muốn xóa?",
       onOk: handleDeleteAll,
       onCancel() {
         console.log("Cancel");
@@ -64,11 +64,11 @@ function ConsultingRegister(props) {
   };
 
   const renameColumn = data.map((item) => ({
-    "Tên khách hàng": item.name,
+    "Tên thí sinh": item.name,
     "Số điện thoại": item.phone,
     Email: item.email,
-    "Nội dung tư vấn": item.contentAdvice,
-    "Trạng thái tư vấn": item.status,
+    "Khóa học đăng kí": item.information,
+    "Trạng thái ": item.status,
     "Ngày tạo": item.createdDate,
     "Ngày cập nhật": item.updateDate,
   }));
@@ -76,12 +76,12 @@ function ConsultingRegister(props) {
   const hanldeExportFile = () => {
     const ws = utils.json_to_sheet(renameColumn);
     const wb = utils.book_new();
-    utils.book_append_sheet(wb, ws, "Khách hàng");
-    writeFileXLSX(wb, "Danh sách khách hàng đăng ký tư vấn.xlsx");
+    utils.book_append_sheet(wb, ws, "Thí sinh");
+    writeFileXLSX(wb, "Danh sách thí sinh đăng ký khóa học.xlsx");
   };
 
   const handleGetCR = () => {
-    getListConsultingRegister().then((res) => {
+    getListConsultingRegister1().then((res) => {
       const data1 = res.data?.data?.items;
       const sortedData = data1.sort((a, b) => b.id - a.id);
       setData(sortedData);
@@ -90,7 +90,7 @@ function ConsultingRegister(props) {
   };
 
   const handleDelCR = (id) => {
-    deleteConsultingRegister(id).then((res) => {
+    deleteConsultingRegister1(id).then((res) => {
       if (res.status === 200) {
         handleGetCR();
       }
@@ -98,7 +98,7 @@ function ConsultingRegister(props) {
   };
   const hasSelected = selectedRowKeys.length > 0;
   const handleDeleteAll = () => {
-    delAllConsultingRegister(selectedRowKeys)
+    delAllConsultingRegister1(selectedRowKeys)
       .then((res) => {
         if (res?.data?.success === true) {
           handleGetCR();
@@ -106,7 +106,7 @@ function ConsultingRegister(props) {
         }
       })
       .catch((error) => {
-        console.error("Lỗi xóa khách hàng", error);
+        console.error("Lỗi xóa thí sinh", error);
       });
   };
 
@@ -115,7 +115,7 @@ function ConsultingRegister(props) {
   };
 
   const handleSearchConsulting = (values) => {
-    filterConsultingRegister({
+    filterConsultingRegister1({
       name: values,
     }).then((res) => {
       if (res.status === 200) {
@@ -125,7 +125,7 @@ function ConsultingRegister(props) {
   };
 
   const handleFilter = (values) => {
-    filterConsultingRegister(values).then((res) => {
+    filterConsultingRegister1(values).then((res) => {
       if (res?.status === 200) {
         setData(res?.data?.data?.items);
       }
@@ -134,7 +134,7 @@ function ConsultingRegister(props) {
 
   const columns = [
     {
-      title: "Tên khách hàng",
+      title: "Tên thí sinh",
       dataIndex: "name",
     },
     {
@@ -146,11 +146,15 @@ function ConsultingRegister(props) {
       dataIndex: "phone",
     },
     {
-      title: "Nội dung tư vấn",
-      dataIndex: "contentAdvice",
+      title: "Địa chỉ",
+      dataIndex: "address",
     },
     {
-      title: "Trạng thái tư vấn",
+      title: "Nội dung đăng kí",
+      dataIndex: "information",
+    },
+    {
+      title: "Trạng thái ",
       dataIndex: "status",
     },
     {
@@ -179,7 +183,7 @@ function ConsultingRegister(props) {
             onClick={() => {
               setOpenDrawer(true);
               navigate(
-                `/adminpage/consultingRegister/detailConsultingRegister/${record.id}`
+                `/adminpage/courseRegister1/detailCourseRegister1/${record.id}`
               );
             }}
           ></Button>
@@ -195,11 +199,11 @@ function ConsultingRegister(props) {
   return (
     <>
       <PageContainer
-        title={`Khách hàng đăng ký tư vấn:  ${total} khách hàng`}
+        title={`Thí sinh đăng kí khóa học:  ${total} thí sinh`}
         extra={[
           <Space>
             <Input.Search
-              placeholder="Nhập tên khách hàng"
+              placeholder="Nhập tên thí sinh"
               onChange={handleSearch}
               value={searchData}
               defaultValue={""}
@@ -216,7 +220,7 @@ function ConsultingRegister(props) {
             </Button>
             <Popover
               content={
-                <FilterConsultingRegister
+                <filterConsultingRegister1
                   onSearch={(values) => {
                     handleFilter(values);
                   }}
@@ -235,7 +239,7 @@ function ConsultingRegister(props) {
           </Space>,
         ]}
       >
-        <EditConsultingRegister
+        <EditConsultingRegister1
           onSuccess={() => {
             handleGetCR();
             setOpenModal(false);
@@ -250,15 +254,15 @@ function ConsultingRegister(props) {
           data={currentCR}
         />
         <Drawer
-          title="Thông tin chi tiết khách hàng"
+          title="Thông tin chi tiết thí sinh"
           width={500}
           open={openDrawer}
           onClose={() => {
-            navigate("/adminpage/consultingRegister");
+            navigate("/adminpage/courseRegister1");
             setOpenDrawer(false);
           }}
         >
-          <DetailConsultingRegister />
+          <DetailConsultingRegister1 />
         </Drawer>
         <Table
           rowKey={"id"}
@@ -292,5 +296,4 @@ function ConsultingRegister(props) {
   );
 }
 
-export default ConsultingRegister;
-
+export default ConsultingRegister1;
