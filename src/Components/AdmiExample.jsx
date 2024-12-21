@@ -7,12 +7,18 @@ import {
 } from "@ant-design/pro-components";
 import { message, notification } from "antd";
 import React, { useRef, useState } from "react";
+<<<<<<< HEAD
+
+import Editor from "../../CKEditor/Editor";
+import { createAdmission, updateAdmission, uploadFile } from "../Services/lead";
+=======
 import {
   createAdmission,
   updateAdmission,
   uploadFile,
 } from "../../../Services/admission";
 import Editor from "../../CKEditor/Editor";
+>>>>>>> c4f6ccf4a6e57688c3239a0cf32a3c5591b33428
 
 function AddEditAdmission({ onSuccess, openModal, data, onOpenChange }) {
   const [listFile, setListFile] = useState([]);
@@ -77,8 +83,13 @@ function AddEditAdmission({ onSuccess, openModal, data, onOpenChange }) {
         <ProFormText
           width="md"
           name="title"
+<<<<<<< HEAD
+          label="Tiêu đề chương trình"
+          placeholder="Nhập tiêu đề chương trình"
+=======
           label="Tên chương trình"
           placeholder="Nhập tên chương trình"
+>>>>>>> c4f6ccf4a6e57688c3239a0cf32a3c5591b33428
           rules={[
             {
               required: true,
@@ -86,6 +97,21 @@ function AddEditAdmission({ onSuccess, openModal, data, onOpenChange }) {
             },
           ]}
         />
+<<<<<<< HEAD
+        <ProFormText
+          width="md"
+          name="program"
+          label="Chương trình đào tạo"
+          placeholder=" Nội dung đào tạo "
+          rules={[
+            {
+              required: true,
+              message: "Vui lòng nhập nội dung đào tạo",
+            },
+          ]}
+        />
+=======
+>>>>>>> c4f6ccf4a6e57688c3239a0cf32a3c5591b33428
 
         {/* Upload ảnh */}
         <ProFormUploadButton
@@ -133,7 +159,11 @@ function AddEditAdmission({ onSuccess, openModal, data, onOpenChange }) {
         {/* Nội dung chương trình */}
         <ProForm.Item
           width="md"
+<<<<<<< HEAD
+          name="admissionForm"
+=======
           name="content"
+>>>>>>> c4f6ccf4a6e57688c3239a0cf32a3c5591b33428
           label="Nội dung chương trình"
           rules={[
             {
@@ -143,10 +173,17 @@ function AddEditAdmission({ onSuccess, openModal, data, onOpenChange }) {
           ]}
         >
           <Editor
+<<<<<<< HEAD
+            initialValues={data?.title || ""}
+            onChange={(event, editor) => {
+              formRef?.current?.setFieldsValue({
+                title: editor.getData(),
+=======
             initialValues={data?.content || ""}
             onChange={(event, editor) => {
               formRef?.current?.setFieldsValue({
                 content: editor.getData(),
+>>>>>>> c4f6ccf4a6e57688c3239a0cf32a3c5591b33428
               });
             }}
           />

@@ -512,27 +512,47 @@ export const filterCourseInformation = (values) => {
 
 //  get all Consulting Register
 export const getListConsultingRegister1 = ()=>{
+<<<<<<< HEAD
+    return axios.get("/course/registrationn/all");
+=======
     return axios.get("/course/registration/all");
+>>>>>>> c4f6ccf4a6e57688c3239a0cf32a3c5591b33428
 } 
 
 //  get detail Consulting Register
 export const getInforConsultingRegister1= (id)=>{
+<<<<<<< HEAD
+    return axios.get(`/course/registrationn/${id}`);
+=======
     return axios.get(`/course/registration/${id}`);
+>>>>>>> c4f6ccf4a6e57688c3239a0cf32a3c5591b33428
 }
 
 // Update infor Consulting Register
 export const updateConsultingRegister1 = (id, values) =>{
+<<<<<<< HEAD
+    return axios.put(`/course/registrationn/${id}`, values);
+=======
     return axios.put(`/course/registration/${id}`, values);
+>>>>>>> c4f6ccf4a6e57688c3239a0cf32a3c5591b33428
 }
 
 // Delete each Consulting Register
 export const deleteConsultingRegister1 = (id) =>{
+<<<<<<< HEAD
+    return axios.delete(`/course/registrationn/${id}`);
+=======
     return axios.delete(`/course/registration/${id}`);
+>>>>>>> c4f6ccf4a6e57688c3239a0cf32a3c5591b33428
 }
 
 //  Delete All Consulting Register
 export const delAllConsultingRegister1 = (ids) =>{
+<<<<<<< HEAD
+    return axios.delete("/course/registrationn/delete/all", { data: ids });
+=======
     return axios.delete("/course/registration/delete/all", { data: ids });
+>>>>>>> c4f6ccf4a6e57688c3239a0cf32a3c5591b33428
 }
 
 // Filter infor Consulting Register
@@ -547,7 +567,11 @@ export const filterConsultingRegister1 = (values) =>{
         phone: values?.phone,
         status: values?.status,
     }
+<<<<<<< HEAD
+    return axios.post("/course/registrationn/filter", docValue);
+=======
     return axios.post("/course/registration/filter", docValue);
+>>>>>>> c4f6ccf4a6e57688c3239a0cf32a3c5591b33428
     }
 
 // ******************** profile user **************

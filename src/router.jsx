@@ -50,6 +50,13 @@ import DetailConsultingRegister1 from "./Components/Details/CourseInformation/Co
 
 
 
+import ConsultingRegister1 from "./Components/Table/CourseInformation/CourseInformation";
+import DetailConsultingRegister1 from "./Components/Details/CourseInformation/CourseInformation";
+import TableAdmissions from "./Components/Table/Admission/Admission";
+import DetailAdmission from "./Components/Details/DetailAdmission/DetailAdmission";
+
+
+
 // import Editor from "./Components/CKEditor/CKEditor";
 
 export const router = createBrowserRouter([
